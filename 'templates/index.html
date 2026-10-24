@@ -1,0 +1,74 @@
+{% extends "base.html" %}{% block content %}
+Welcome to
+{{ school.hero_title }}
+{{ school.hero_text }}
+
+Explore Our School → Online Admission ↗
+{% for icon,title,color in [('🎓','Quality Education','orange'),('👥','Experienced Teachers','blue'),('📖','Modern Infrastructure','green'),('🛡','Safe & Secure Environment','purple'),('★','Holistic Development','pink'),('💻','Smart Learning','cyan'),('🏆','Co-curricular Activities','gold'),('♡','Value Based Education','teal')] %}
+{{ icon }}{{ title }}
+{% endfor %}
+🔔 Latest School Notices
+{% for n in notices %}
+{{ n.date[8:10] if n.date|length>=10 else '—' }}{{ n.date[5:7] if n.date|length>=10 else '' }}
+{{ n.title }}
+{{ n.body }}
+
+{% else %}
+No notices published yet.
+
+{% endfor %}
+About Our School
+{{ school.about }}
+
+✓ Experienced & Dedicated Faculty
+✓ Safe & Supportive Environment
+✓ Focus on Overall Development
+✓ Learning with Values
+Principal: {{ school.principal }}
+Director: {{ school.director }}
+
+📚
+LEARN · GROW · SUCCEED
+🔗 Quick Links
+✎ Online Admission♧ Teachers & Staff▤ School Notices☎ Contact Us🔐 Admin Login
+👩‍🏫 Teachers & Staff
+Our dedicated team
+{% for t in teachers %}
+{% if t.photo %}{{ t.name }}{% else %}
+👩‍🏫
+{% endif %}
+{{ t.name }}
+{{ t.role }}{% if t.subject %} · {{ t.subject }}{% endif %}
+
+{% if t.phone %}
+☎ {{ t.phone }}
+
+{% endif %}
+{% else %}
+Teacher profiles will be added soon.
+
+{% endfor %}
+{% if gallery_photos %}
+📸 School Gallery
+School life and activities
+{% for p in gallery_photos %}
+{{ p.title }}
+{{ p.title }}
+
+{% endfor %}
+{% endif %}
+📝 Online Admission Enquiry
+Fill in the form and the school will contact you.
+
+Student Name *
+Date of Birth
+mm/dd/yyyy
+Class Applying For
+Select class
+Parent / Guardian Name *
+Phone Number *
+Email
+Address
+
+Submit Enquiry →
+{% endblock %}
